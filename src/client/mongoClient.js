@@ -3,6 +3,7 @@ const mongoDBURL = "mongodb+srv://kazun2kt:mongo1234@mytutor.hkj5swr.mongodb.net
 require('../schemas/student');
 const {raw} = require("express");
 const  mongoClient =  mongoose.connect(mongoDBURL,{
+        dbName: 'MYTUTOR',
         useNewUrlParser:true
     }).then(()=>{console.log("Successfully connected to mongo")})
         .catch(e=>console.log(e));
@@ -10,7 +11,12 @@ const  mongoClient =  mongoose.connect(mongoDBURL,{
 const getMongoClient = async () => {
     return mongoClient;
 };
-
+/**
+ *
+ * Adding student data to DB
+ * @param studentData - student data object
+ * @returns {Promise<*>}
+ */
 const registerStudent = async studentData => {
   const students = mongoose.model('students');
   try{

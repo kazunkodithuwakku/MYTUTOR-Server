@@ -6,7 +6,9 @@ const {
 const mongoClient = require('../client/mongoClient');
 
 router.get('/', (req, res) => res.send('My Tutor server is up and running!'));
-
+/**
+ * this is the router for register student details
+ */
 router.post('/registerStudent', async (req, res) => {
     const reqPayload = req.body;
     const data = await mongoClient.registerStudent(reqPayload);
