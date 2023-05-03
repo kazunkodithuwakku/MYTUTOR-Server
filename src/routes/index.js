@@ -15,6 +15,7 @@ router.post('/registerStudent', async (req, res) => {
     res.send(data).status(200);
 });
 
+
 router.get('/test', async (req, res) => {
     const jobExtractPayload = req.body;
     const data = 'this is a test'
