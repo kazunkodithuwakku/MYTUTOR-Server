@@ -33,7 +33,24 @@ const registerStudent = async studentData => {
   }
 };
 
+const loginStudents = async loginData => {
+    const students = mongoose.model('students');
+    try{
+        const user = await students.findOne({
+            email: loginData.email
+        });
+        if(user.password===loginData.password)
+            return true
+        else
+            return false
+    }
+    catch (error){
+        return false
+    }
+};
+
 module.exports = {
     registerStudent,
-    getMongoClient
+    getMongoClient,
+    loginStudents
 };

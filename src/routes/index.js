@@ -15,6 +15,15 @@ router.post('/registerStudent', async (req, res) => {
     res.send(data).status(200);
 });
 
+/**
+ * this is the router for login students
+ */
+router.post('/loginStudents', async (req, res) => {
+    const reqPayload = req.body;
+    const data = await mongoClient.loginStudents(reqPayload);
+    res.send(data).status(200);
+});
+
 
 router.get('/test', async (req, res) => {
     const jobExtractPayload = req.body;
