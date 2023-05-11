@@ -6,7 +6,7 @@ app.use(express.json());
 const router = require('./routes');
 const mongo = require('./client/mongoClient');
 
-const collection = require('./schemas/login');
+const collection = require('./schemas/student');
 
 app.use(cors());
 app.use('/', router);
