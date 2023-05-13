@@ -31,4 +31,9 @@ router.get('/test', async (req, res) => {
     res.send(data).status(200);
 });
 
+router.get('/getCourses', async (req, res) => {
+    const data = await mongoClient.getCourses();
+    res.send(data).status(200);
+});
+
 module.exports = router;

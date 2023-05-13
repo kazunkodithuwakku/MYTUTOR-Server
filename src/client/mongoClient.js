@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const mongoDBURL = "mongodb+srv://kazun2kt:mongo1234@mytutor.hkj5swr.mongodb.net/?retryWrites=true&w=majority";
 require('../schemas/student');
+require('../schemas/courses');
 const {raw} = require("express");
 const  mongoClient =  mongoose.connect(mongoDBURL,{
         dbName: 'MYTUTOR',
@@ -49,8 +50,20 @@ const loginStudents = async loginData => {
     }
 };
 
+const getCourses = async () => {
+    const coursesModel = mongoose.model('courses');
+    try{
+        const allCourses = await coursesModel.find({});
+        return allCourses;
+    }
+    catch (error){
+        return false
+    }
+};
+
 module.exports = {
     registerStudent,
     getMongoClient,
-    loginStudents
+    loginStudents,
+    getCourses
 };
