@@ -35,5 +35,13 @@ router.get('/getCourses', async (req, res) => {
     const data = await mongoClient.getCourses();
     res.send(data).status(200);
 });
+/**
+ * this is the router for create new course
+ */
+router.post('/addCourse', async (req, res) => {
+    const reqPayload = req.body;
+    const data = await mongoClient.addCourse(reqPayload);
+    res.send(data).status(200);
+});
 
 module.exports = router;

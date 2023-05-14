@@ -63,9 +63,28 @@ const getCourses = async () => {
     }
 };
 
+const addCourse = async courseData => {
+    const students = mongoose.model('courses');
+    try{
+        await students.create({
+            topic: courseData.topic,
+            subTopic: courseData.subTopic,
+            description: courseData.description,
+            price: "$ "+courseData.price,
+            followingCount: courseData.studentCount,
+            lecturer: courseData.name,
+            image: "https://images.unsplash.com/photo-1587831990711-23ca6441447b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZGVza3RvcCUyMGNvbXB1dGVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+        });
+    }
+    catch (error){
+        return error.message
+    }
+}
+
 module.exports = {
     registerStudent,
     getMongoClient,
     loginStudents,
-    getCourses
+    getCourses,
+    addCourse
 };
