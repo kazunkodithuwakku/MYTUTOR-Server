@@ -12,7 +12,8 @@ const coursesSchema = new mongoose.Schema(
         price: String,
         followingCount: String,
         lecturer: String,
-        image: String
+        image: String,
+        email: String
     },{
         collection: "courses",
     }

@@ -73,6 +73,7 @@ const addCourse = async courseData => {
             price: "$ "+courseData.price,
             followingCount: courseData.studentCount,
             lecturer: courseData.name,
+            email: courseData.email,
             image: "https://cdn.thewirecutter.com/wp-content/media/2021/03/cheap-desktop-pc-2048px-3001-2x1-1.jpg?auto=webp&quality=75&crop=2:1&width=1024"
         });
     }
