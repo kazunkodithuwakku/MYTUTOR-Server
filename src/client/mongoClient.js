@@ -27,6 +27,7 @@ const registerStudent = async studentData => {
           name: studentData.name,
           age: studentData.age,
           mobileNumber: studentData.mobile,
+          role: studentData.role
       });
   }
   catch (error){
@@ -40,8 +41,9 @@ const loginStudents = async loginData => {
         const user = await students.findOne({
             email: loginData.email
         });
-        if(user.password===loginData.password)
+        if(user.password===loginData.password){
             return true
+        }
         else
             return false
     }

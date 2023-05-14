@@ -11,6 +11,7 @@ const studentDetailsSchema = new mongoose.Schema(
         name: String,
         age: String,
         mobileNumber: String,
+        role: String
     },{
         collection: "students",
     }
