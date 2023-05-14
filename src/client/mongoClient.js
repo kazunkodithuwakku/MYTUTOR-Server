@@ -14,20 +14,20 @@ const getMongoClient = async () => {
 };
 /**
  *
- * Adding student data to DB
- * @param studentData - student data object
+ * Adding user data to DB
+ * @param userData - user data object
  * @returns {Promise<*>}
  */
-const registerStudent = async studentData => {
-  const students = mongoose.model('students');
+const registerUser = async userData => {
+  const users = mongoose.model('users');
   try{
-      await students.create({
-          email: studentData.email,
-          password: studentData.password,
-          name: studentData.name,
-          age: studentData.age,
-          mobileNumber: studentData.mobile,
-          role: studentData.role
+      await users.create({
+          email: userData.email,
+          password: userData.password,
+          name: userData.name,
+          age: userData.age,
+          mobileNumber: userData.contact,
+          role: userData.role
       });
   }
   catch (error){
@@ -35,17 +35,17 @@ const registerStudent = async studentData => {
   }
 };
 
-const loginStudents = async loginData => {
-    const students = mongoose.model('students');
+const loginUsers = async loginData => {
+    const users = mongoose.model('users');
     try{
-        const user = await students.findOne({
+        const user = await users.findOne({
             email: loginData.email
         });
         if(user.password===loginData.password){
-            return true
+            return {"status":true, "userType":user.role}
         }
         else
-            return false
+            return {"status":false}
     }
     catch (error){
         return false
@@ -64,16 +64,16 @@ const getCourses = async () => {
 };
 
 const addCourse = async courseData => {
-    const students = mongoose.model('courses');
+    const courses = mongoose.model('courses');
     try{
-        await students.create({
+        await courses.create({
             topic: courseData.topic,
             subTopic: courseData.subTopic,
             description: courseData.description,
             price: "$ "+courseData.price,
             followingCount: courseData.studentCount,
             lecturer: courseData.name,
-            image: "https://images.unsplash.com/photo-1587831990711-23ca6441447b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZGVza3RvcCUyMGNvbXB1dGVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+            image: "https://cdn.thewirecutter.com/wp-content/media/2021/03/cheap-desktop-pc-2048px-3001-2x1-1.jpg?auto=webp&quality=75&crop=2:1&width=1024"
         });
     }
     catch (error){
@@ -82,9 +82,9 @@ const addCourse = async courseData => {
 }
 
 module.exports = {
-    registerStudent,
+    registerUser,
     getMongoClient,
-    loginStudents,
+    loginUsers,
     getCourses,
     addCourse
 };
